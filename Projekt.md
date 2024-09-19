@@ -1,8 +1,8 @@
-1. [ ] Neuer Benutzer Seite erstellen !!!
-1. [ ] Login Seite erstellen !!
-1. [ ] Startbildschirm erstellen !
-1. [ ] Neues Workout erstellen !!! 
-1. [ ] Tagebuch erstellen !!
+[ ] Neuer Benutzer Seite erstellen !!!
+[ ] Login Seite erstellen !!
+[ ] Startbildschirm erstellen !
+[ ] Neues Workout erstellen !!! 
+[ ] Tagebuch erstellen !!
 
 | Ahmed | Victor |
 |-----|-----|
