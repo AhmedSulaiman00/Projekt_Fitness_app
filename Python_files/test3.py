@@ -1,5 +1,5 @@
 import mysql.connector
-import pandas as pd
+import datetime
 
 mydb = mysql.connector.connect(
     host="localhost",
@@ -7,38 +7,11 @@ mydb = mysql.connector.connect(
     database = "fitlife_workout_app_db",
     ssl_disabled = True
 )
-
 cursor = mydb.cursor()
+wkUser_id = 12
 
-wkUser_name = ""
-wkUser_id = 0
-
-#Simple login proccess
-def wkLogin():
-    wkloggedIn = False
-    while wkloggedIn == False:
-        wkUser_name = input("What is your username?")
-        query = """
-            SELECT ID FROM benutzer
-            WHERE Vorname = %s
-        """
-        values = (wkUser_name,)
-        cursor.execute(query, values)
-        wkResults = cursor.fetchone()
-        if isinstance(wkResults, tuple) == True:
-            for i in wkResults:
-                global wkUser_id
-                wkUser_id = i
-            wkloggedIn = True
-            print("\nYou are logged in!\n")
-        else:
-            print("\nThis user does not exist! \nTry again, or create an account\n")
-
-#Function to close the app (main function)
-def wkApp_closing(boolean):
-    wkApp_close_input = input("Would you like to close the app? (y/n)")
-    if wkApp_close_input == "y": boolean = True; print("\nSuccessfully closed the app!\n")
-    return boolean
+def wkDict_query(my_dict):
+    ...
 
 def create_übung_get_übungID() -> int:
     # Create the Übung
@@ -92,7 +65,6 @@ def create_wk_get_wkID() -> int:
         for i in wkResults:
             return i 
 
-#function to add a workout
 def wkAdding_workout():
     wkFinish = False
     wkWorkout_id = create_wk_get_wkID()
@@ -142,16 +114,4 @@ def wkAdding_workout():
             wkCancel = input("do you want to cancel the workout? (y/n)\t")
             if wkCancel == "y":
                 wkFinish = True
-
-wkLogin()
-wkClose_app = False
-while (wkClose_app == False):
-    wkNew_workout = input("Do you want to add a new workout? (y/n)")
-    if wkNew_workout == "y":
-        wkAdding_workout()
-        wkNew_workout = ""
-    wkClose_app = wkApp_closing(wkClose_app)
-
-
-cursor.close()
-mydb.close()
+wkAdding_workout()
